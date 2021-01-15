@@ -1,6 +1,9 @@
 # fqoperation [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 Top secret project that returns distance of src and help message
 
+# semantic 
+Trilateration work semantic: https://github.com/lemmingapex/Trilateration
+
 # license
 Copyright 2021, paguerre3
 
