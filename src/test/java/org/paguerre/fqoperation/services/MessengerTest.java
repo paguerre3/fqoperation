@@ -18,8 +18,8 @@ public class MessengerTest {
 	public void getMessagesNullOrEmpty() {
 		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
 				() -> messenger.getMessage((String[][]) null),
-				"Expected getMessage() to throw IllegalArgumentException -> 'All messagers are null or empty', but it didn't");
-		assertEquals("All messagers are null or empty.", thrown.getMessage());
+				"Expected getMessage() to throw IllegalArgumentException -> 'All messagers are null', but it didn't");
+		assertEquals("All messagers are null.", thrown.getMessage());
 	}
 
 	@Test
@@ -43,11 +43,10 @@ public class MessengerTest {
 	}
 
 	@Test
-	public void getMessageWithMoreErroneousForms() {
+	public void getMessageWithMoreErroneousFormsAndGaps() {
 		RebelSatellite rb1 = new RebelSatellite("kenobi", null, 0.0,
 				new String[] { "", "este", "es", "un", "mensaje" });
-		RebelSatellite rb2 = new RebelSatellite("skywalker", null, 0.0,
-				new String[] { "", "este", "", "un", "mensaje" });
+		RebelSatellite rb2 = new RebelSatellite("skywalker", null, 0.0, new String[] { "este", "", "un", "mensaje" });
 		RebelSatellite rb3 = new RebelSatellite("sato", null, 0.0, new String[] { "", "", "es", "", "mensaje" });
 		String message = messenger.getMessage(rb1.getMessageFromSource(), rb2.getMessageFromSource(),
 				rb3.getMessageFromSource());

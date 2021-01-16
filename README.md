@@ -2,7 +2,8 @@
 Top secret project that returns distance of src and help message
 
 # semantic 
-Trilateration work semantic: https://github.com/lemmingapex/Trilateration
+Why using Trilateration: http://juankenny.blogspot.com/2013/05/rt-tarea-6-geolocalizacion.html
+Java library: https://github.com/lemmingapex/Trilateration
 
 # license
 Copyright 2021, paguerre3

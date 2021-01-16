@@ -1,6 +1,8 @@
 package org.paguerre.fqoperation.services;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -15,20 +17,30 @@ import org.springframework.stereotype.Service;
 public class Messenger {
 
 	public String getMessage(String[]... messages) {
-		if (ArrayUtils.isNotEmpty(messages)) {
+		if (messages != null) {
 			Map<String, Integer> phrasesToOrder = new HashMap<>();
-			Arrays.stream(messages).forEach(arr -> {
+			List<List<String>> msgsList = new ArrayList<>();
+			List<Integer> msgsSizes = new ArrayList<>();
+			Arrays.stream(messages).filter(arr0 -> ArrayUtils.isNotEmpty(arr0)).forEach(arr -> {
 				List<String> msgList = Arrays.asList(arr);
-				msgList.stream().forEach(msg -> {
-					if (StringUtils.isNotBlank(msg)) {
-						int index = msgList.indexOf(msg);
-						Integer indexToCompare = phrasesToOrder.get(msg);
-						if (indexToCompare == null || (index < indexToCompare)) {
-							phrasesToOrder.put(msg, index);
-						}
-					}
-				});
+				msgsList.add(msgList);
+				msgsSizes.add(msgList.size());
 			});
+			final int maxMessageSize = Collections.max(msgsSizes);
+			msgsList.stream().forEach(msgList -> msgList.stream().forEach(msg -> {
+				// don't want to filter.stream twice as it mast
+				// be done in sequence:
+				if (StringUtils.isNotBlank(msg)) {
+					int index = msgList.indexOf(msg);
+					if (msgList.size() < maxMessageSize) {
+						index++;
+					}
+					Integer indexToCompare = phrasesToOrder.get(msg);
+					if (indexToCompare == null || (index < indexToCompare)) {
+						phrasesToOrder.put(msg, index);
+					}
+				}
+			}));
 			// ordered phrases by lowest index
 			Map<String, Integer> sortedPhrases = phrasesToOrder.entrySet().stream()
 					.sorted(Map.Entry.<String, Integer>comparingByValue()).collect(Collectors.toMap(Map.Entry::getKey,
@@ -42,6 +54,6 @@ public class Messenger {
 				sb.deleteCharAt(sb.length() - 1);
 			return sb.toString();
 		}
-		throw new IllegalArgumentException("All messagers are null or empty.");
+		throw new IllegalArgumentException("All messagers are null.");
 	}
 }
