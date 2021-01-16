@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.MutablePair;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,21 +19,33 @@ public class Messenger {
 
 	public String getMessage(String[]... messages) {
 		if (messages != null) {
+			// distinct phrases are here:
 			Map<String, Integer> phrasesToOrder = new HashMap<>();
+			// original message ready to be streamed:
 			List<List<String>> msgsList = new ArrayList<>();
+			// message sizes are needed for calculating most frequent size:
 			List<Integer> msgsSizes = new ArrayList<>();
 			Arrays.stream(messages).filter(arr0 -> ArrayUtils.isNotEmpty(arr0)).forEach(arr -> {
 				List<String> msgList = Arrays.asList(arr);
 				msgsList.add(msgList);
 				msgsSizes.add(msgList.size());
 			});
-			final int maxMessageSize = Collections.max(msgsSizes);
+			// format gaps are reduced by message size:
+			MutablePair<Integer, Integer> mostFrequentSizes = new MutablePair<>(0, 0);
+			msgsSizes.forEach(ms -> {
+				int frequency = Collections.frequency(msgsSizes, ms);
+				if (frequency > mostFrequentSizes.getRight()) {
+					mostFrequentSizes.setLeft(ms);
+					mostFrequentSizes.setRight(frequency);
+				}
+			});
+			int mostFrequentSize = mostFrequentSizes.getLeft();
 			msgsList.stream().forEach(msgList -> msgList.stream().forEach(msg -> {
 				// don't want to filter.stream twice as it mast
 				// be done in sequence:
 				if (StringUtils.isNotBlank(msg)) {
 					int index = msgList.indexOf(msg);
-					if (msgList.size() < maxMessageSize) {
+					if (msgList.size() != mostFrequentSize) {
 						index++;
 					}
 					Integer indexToCompare = phrasesToOrder.get(msg);
@@ -41,7 +54,7 @@ public class Messenger {
 					}
 				}
 			}));
-			// ordered phrases by lowest index
+			// finally, orderer phrases by lowest index:
 			Map<String, Integer> sortedPhrases = phrasesToOrder.entrySet().stream()
 					.sorted(Map.Entry.<String, Integer>comparingByValue()).collect(Collectors.toMap(Map.Entry::getKey,
 							Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));

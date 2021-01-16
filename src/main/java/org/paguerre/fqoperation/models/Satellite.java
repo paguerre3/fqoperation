@@ -1,28 +1,35 @@
 package org.paguerre.fqoperation.models;
 
-public class Satellite extends Spaceship {
+public class Satellite extends Spacecraft {
 
-	private double sourceDistance;
+	private String name = "";
+	private double distance;
 
-	public Satellite(String name, double[] coordinates, double sourceDistance) {
-		super(name, coordinates);
-		this.sourceDistance = sourceDistance;
+	public Satellite(String name, double[] position, double distance) {
+		super(position, null);
+		this.name = name;
+		this.distance = distance;
 	}
 
-	public Satellite(String name, double[] coordinates) {
-		super(name, coordinates);
+	public Satellite(String name, double[] position, double distance, String[] message) {
+		super(position, message);
+		this.name = name;
+		this.distance = distance;
 	}
 
-	public Satellite(String name, double sourceDistance) {
-		super(name);
-		this.sourceDistance = sourceDistance;
+	public String getName() {
+		return name;
 	}
 
-	public double getSourceDistance() {
-		return sourceDistance;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setSourceDistance(double sourceDistance) {
-		this.sourceDistance = sourceDistance;
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
 	}
 }
