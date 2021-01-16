@@ -1,0 +1,6 @@
+org:
+  paguerre:
+    fqoperation:
+      version: v1
+      resource: topsecret
+      context-path: /${org.paguerre.fqoperation.version}/${org.paguerre.fqoperation.resource}
