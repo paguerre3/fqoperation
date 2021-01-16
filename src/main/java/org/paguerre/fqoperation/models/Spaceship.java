@@ -17,6 +17,11 @@ public class Spaceship {
 		this.coordinates = coordinates;
 	}
 
+	public Spaceship(String name) {
+		super();
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}

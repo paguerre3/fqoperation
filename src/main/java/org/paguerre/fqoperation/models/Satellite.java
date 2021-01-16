@@ -9,6 +9,15 @@ public class Satellite extends Spaceship {
 		this.sourceDistance = sourceDistance;
 	}
 
+	public Satellite(String name, double[] coordinates) {
+		super(name, coordinates);
+	}
+
+	public Satellite(String name, double sourceDistance) {
+		super(name);
+		this.sourceDistance = sourceDistance;
+	}
+
 	public double getSourceDistance() {
 		return sourceDistance;
 	}
