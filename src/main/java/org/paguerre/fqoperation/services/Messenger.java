@@ -1,10 +1,11 @@
 package org.paguerre.fqoperation.services;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -15,24 +16,32 @@ public class Messenger {
 
 	public String getMessage(String[]... messages) {
 		if (ArrayUtils.isNotEmpty(messages)) {
-			Set<String> phrases = new LinkedHashSet<>();
-			List<List<String>> msgsList = new ArrayList<>();
+			Map<String, Integer> phrasesToOrder = new HashMap<>();
 			Arrays.stream(messages).forEach(arr -> {
 				List<String> msgList = Arrays.asList(arr);
-				phrases.addAll(msgList);
-				msgsList.add(msgList);
+				msgList.stream().forEach(msg -> {
+					if (StringUtils.isNotBlank(msg)) {
+						int index = msgList.indexOf(msg);
+						Integer indexToCompare = phrasesToOrder.get(msg);
+						if (indexToCompare == null || (index < indexToCompare)) {
+							phrasesToOrder.put(msg, index);
+						}
+					}
+				});
 			});
-			phrases.remove(StringUtils.EMPTY);
-
+			// ordered phrases by lowest index
+			Map<String, Integer> sortedPhrases = phrasesToOrder.entrySet().stream()
+					.sorted(Map.Entry.<String, Integer>comparingByValue()).collect(Collectors.toMap(Map.Entry::getKey,
+							Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+			StringBuilder sb = new StringBuilder();
+			sortedPhrases.keySet().stream().forEach(ph -> {
+				sb.append(ph);
+				sb.append(StringUtils.SPACE);
+			});
+			if (sb.length() > 0)
+				sb.deleteCharAt(sb.length() - 1);
+			return sb.toString();
 		}
-		throw new IllegalArgumentException("all messagers are null or empty");
-	}
-
-	public static void main(String[] args) {
-		Messenger msg = new Messenger();
-		String[] m1 = { "este", "", "", "mensaje", "" };
-		String[] m2 = { "", "es", "", "", "secreto" };
-		String[] m3 = { "este", "", "un", "", "" };
-		System.out.println(msg.getMessage(m1, m2, m3));
+		throw new IllegalArgumentException("All messagers are null or empty.");
 	}
 }
