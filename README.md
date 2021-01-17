@@ -44,9 +44,7 @@ https://cloud.google.com/appengine/docs/standard/java/gradle-reference?hl=es-419
    [REQUISITE0.2] gcloud app create (instance created in asia [1])
 ./gradlew appengineDeploy
 
-Deployed service [default] to [https://fqoperations.df.r.appspot.com]
-
-### 8. service location: https://fqoperations.df.r.appspot.com/v1/topsecret
+### service location: https://fqoperations.df.r.appspot.com/v1/topsecret
 
 
 # license
