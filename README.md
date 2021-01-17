@@ -15,6 +15,40 @@ Java library: https://github.com/lemmingapex/Trilateration
 ![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/pckge-diagram.jpg?raw=true)
 
 
+# google app engine (sandbox) 
+https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0
+
+0. authorizate api cloud from console (google usr & pass)
+gcloud auth list
+
+1. check if selected is the one to work with 
+gcloud config list project
+
+2. git clone https (requests for git auth) 
+https://github.com/paguerre3/fqoperation.git
+
+3. update gradle to support google-appengie-plugin (already done)
+https://github.com/GoogleCloudPlatform/app-gradle-plugin
+
+4. set app.yaml under src/main/appengine
+runtime: java11
+instance_class: F1 (using smallest instance)
+
+5. run using app-engine gradle: https://cloud.google.com/appengine/docs/standard/java/using-gradle?hl=es-419
+https://medium.com/@fanovilla/deploying-a-spring-boot-gradle-app-to-app-engine-standard-java-11-bf7b8d15d81c
+https://cloud.google.com/appengine/docs/standard/java/gradle-reference?hl=es-419 
+
+6. set apengine deploy configs in gradle (see previous references)
+
+7. [REQUISITE0.1] (chmod 777 gradlew) for exec
+   [REQUISITE0.2] gcloud app create (instance created in asia [1])
+./gradlew appengineDeploy
+
+Deployed service [default] to [https://fqoperations.df.r.appspot.com]
+
+### 8. service location: https://fqoperations.df.r.appspot.com/v1/topsecret
+
+
 # license
 Copyright 2021, paguerre3
 
