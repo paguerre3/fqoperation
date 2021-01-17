@@ -18,31 +18,31 @@ Java library: https://github.com/lemmingapex/Trilateration
 # google app engine (sandbox) 
 https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0
 
-0. authorizate api cloud from console (google usr & pass)
-gcloud auth list
+fresh install (please notice service is already deployed under asia region):
 
-1. check if selected is the one to work with 
-gcloud config list project
+0. authorizate api cloud from console (google usr & pass)-->> gcloud auth list
 
-2. git clone https (requests for git auth) 
-https://github.com/paguerre3/fqoperation.git
+1. check if selected is the one to work with -->> gcloud config list project
 
-3. update gradle to support google-appengie-plugin (already done)
-https://github.com/GoogleCloudPlatform/app-gradle-plugin
+2. clone existent repo -->> git clone https://github.com/paguerre3/fqoperation.git
 
-4. set app.yaml under src/main/appengine
-runtime: java11
-instance_class: F1 (using smallest instance)
+3. update gradle build.gradle and settings.gradle to support google-appengie-plugin: https://github.com/GoogleCloudPlatform/app-gradle-plugin
 
-5. run using app-engine gradle: https://cloud.google.com/appengine/docs/standard/java/using-gradle?hl=es-419
+4. set app.yaml under src/main/appengine with the following lines: runtime: java11
+instance_class: F1 (using smallest instance).
+
+5. read references to understand appengine plugin with gradle (it explains steps 3, 4, 6 setup and also appengine commands to be used):
+https://cloud.google.com/appengine/docs/standard/java/using-gradle?hl=es-419
 https://medium.com/@fanovilla/deploying-a-spring-boot-gradle-app-to-app-engine-standard-java-11-bf7b8d15d81c
 https://cloud.google.com/appengine/docs/standard/java/gradle-reference?hl=es-419 
 
-6. set apengine deploy configs in gradle (see previous references)
+6. write appengine deploy configurations in build.gradle (already present in build.gradle, please see previous references or existent build.gradle) 
 
-7. [REQUISITE0.1] (chmod 777 gradlew) for exec
-   [REQUISITE0.2] gcloud app create (instance created in asia [1])
-./gradlew appengineDeploy
+8. update chmod to execute from gradle wrapper -->> chmod 777 gradlew
+
+9. create google cloud app under a certain region -->> gcloud app create (region selection is being requested during creation, it this case asia was selected)
+
+10. service deploy invoking appengine from gradle wrapper -->> ./gradlew appengineDeploy
 
 ### service location: https://fqoperations.df.r.appspot.com/v1/topsecret
 
