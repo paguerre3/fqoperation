@@ -40,7 +40,7 @@ https://cloud.google.com/appengine/docs/standard/java/gradle-reference?hl=es-419
 
 8. update chmod to execute from gradle wrapper -->> chmod 777 gradlew
 
-9. create google cloud app under a certain region -->> gcloud app create (region selection is being requested during creation, it this case asia was selected)
+9. create google cloud app under a certain region -->> gcloud app create (region selection is being requested during creation)
 
 10. service deploy invoking appengine from gradle wrapper -->> ./gradlew appengineDeploy
 
