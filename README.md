@@ -1,9 +1,19 @@
 # fqoperation [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 Top secret project that returns distance of src and help message
 
+
 # semantic 
 Why using Trilateration: http://juankenny.blogspot.com/2013/05/rt-tarea-6-geolocalizacion.html
+
 Java library: https://github.com/lemmingapex/Trilateration
+
+
+# arquitecture
+![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/seq-diagram.jpg?raw=true)
+
+### package view 
+![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/pckge-diagram.jpg?raw=true)
+
 
 # license
 Copyright 2021, paguerre3

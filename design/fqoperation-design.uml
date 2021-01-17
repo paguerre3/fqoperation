@@ -260,7 +260,7 @@
 <XPD:ATTR name="Left" type="integer">80</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">20</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">480</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">344</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">309</XPD:ATTR>
 <XPD:REF name="Model">ZABO7tczj0aXc6h3x7J+FQAA</XPD:REF>
 <XPD:OBJ name="NameLabel" type="LabelView" guid="TpSmeLdI9Uef4gZc8OeQyAAA">
 <XPD:ATTR name="Text" type="string">fqoperation-*.jar</XPD:ATTR>
