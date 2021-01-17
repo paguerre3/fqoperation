@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import org.paguerre.fqoperation.models.RebelSatellite;
+import org.paguerre.fqoperation.models.Satellite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -24,32 +24,37 @@ public class MessengerTest {
 
 	@Test
 	public void getMessageFromFQOperation() {
-		RebelSatellite rb1 = new RebelSatellite("kenobi", null, 0.0, new String[] { "este", "", "", "mensaje", "" });
-		RebelSatellite rb2 = new RebelSatellite("skywalker", null, 0.0, new String[] { "", "es", "", "", "secreto" });
-		RebelSatellite rb3 = new RebelSatellite("sato", null, 0.0, new String[] { "este", "", "un", "", "" });
-		String message = messenger.getMessage(rb1.getMessageFromSource(), rb2.getMessageFromSource(),
-				rb3.getMessageFromSource());
+		Satellite rb1 = new Satellite("kenobi", null, 0.0, new String[] { "este", "", "", "mensaje", "" });
+		Satellite rb2 = new Satellite("skywalker", null, 0.0, new String[] { "", "es", "", "", "secreto" });
+		Satellite rb3 = new Satellite("sato", null, 0.0, new String[] { "este", "", "un", "", "" });
+		String message = messenger.getMessage(rb1.getMessage(), rb2.getMessage(), rb3.getMessage());
 		assertEquals("este es un mensaje secreto", message);
 	}
 
 	@Test
 	public void getMessageWithErroneousForms() {
-		RebelSatellite rb1 = new RebelSatellite("kenobi", null, 0.0, new String[] { "este", "", "", "mensaje", "" });
-		RebelSatellite rb2 = new RebelSatellite("skywalker", null, 0.0, new String[] { "", "es", "", "", "secreto" });
-		RebelSatellite rb3 = new RebelSatellite("sato", null, 0.0, new String[] { "este", "", "un", "", "", "" });
-		String message = messenger.getMessage(rb1.getMessageFromSource(), rb2.getMessageFromSource(),
-				rb3.getMessageFromSource());
+		Satellite rb1 = new Satellite("kenobi", null, 0.0, new String[] { "este", "", "", "mensaje", "" });
+		Satellite rb2 = new Satellite("skywalker", null, 0.0, new String[] { "", "es", "", "", "secreto" });
+		Satellite rb3 = new Satellite("sato", null, 0.0, new String[] { "este", "", "un", "", "" });
+		String message = messenger.getMessage(rb1.getMessage(), rb2.getMessage(), rb3.getMessage());
 		assertEquals("este es un mensaje secreto", message);
 	}
 
 	@Test
-	public void getMessageWithMoreErroneousFormsAndGaps() {
-		RebelSatellite rb1 = new RebelSatellite("kenobi", null, 0.0,
-				new String[] { "", "este", "es", "un", "mensaje" });
-		RebelSatellite rb2 = new RebelSatellite("skywalker", null, 0.0, new String[] { "este", "", "un", "mensaje" });
-		RebelSatellite rb3 = new RebelSatellite("sato", null, 0.0, new String[] { "", "", "es", "", "mensaje" });
-		String message = messenger.getMessage(rb1.getMessageFromSource(), rb2.getMessageFromSource(),
-				rb3.getMessageFromSource());
+	public void getMessageWithMoreErroneousFormsAndLowerArrayGaps() {
+		Satellite rb1 = new Satellite("kenobi", null, 0.0, new String[] { "", "este", "es", "un", "mensaje" });
+		Satellite rb2 = new Satellite("skywalker", null, 0.0, new String[] { "este", "", "un", "mensaje" });
+		Satellite rb3 = new Satellite("sato", null, 0.0, new String[] { "", "", "es", "", "mensaje" });
+		String message = messenger.getMessage(rb1.getMessage(), rb2.getMessage(), rb3.getMessage());
 		assertEquals("este es un mensaje", message);
+	}
+
+	@Test
+	public void getMessageWithMoreErroneousFormsAndLargerArrayGaps() {
+		Satellite rb1 = new Satellite("kenobi", null, 0.0, new String[] { "este", "", "", "mensaje", "" });
+		Satellite rb2 = new Satellite("skywalker", null, 0.0, new String[] { "", "es", "", "", "secreto" });
+		Satellite rb3 = new Satellite("sato", null, 0.0, new String[] { "este", "", "un", "", "", "" });
+		String message = messenger.getMessage(rb1.getMessage(), rb2.getMessage(), rb3.getMessage());
+		assertEquals("este es un mensaje secreto", message);
 	}
 }
