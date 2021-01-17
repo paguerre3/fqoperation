@@ -4,17 +4,3 @@ org:
       version: v1
       resource: topsecret
       context-path: /${org.paguerre.fqoperation.version}/${org.paguerre.fqoperation.resource}
-      rebel:
-        satellites:
-        - name: kenobi
-          coordinates:
-          - -500
-          - -200
-        - name: skywalker
-          coordinates:
-          - 100
-          - -100
-        - name: sato
-          coordinates:
-          - 500
-          - 100

@@ -1,5 +1,7 @@
 package org.paguerre.fqoperation.models;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class Spacecraft {
 
 	private double[] position;
@@ -27,5 +29,10 @@ public class Spacecraft {
 
 	public void setMessage(String[] message) {
 		this.message = message;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("pos", this.getPosition()).append("mssg", this.getMessage()).toString();
 	}
 }
