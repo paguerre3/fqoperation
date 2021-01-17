@@ -3,15 +3,16 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'eclipse'
+	id 'com.google.cloud.tools.appengine' version "2.4.1"
 }
 
 group = 'org.paguerre'
 version = '2.0.0-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-repositories {
-	mavenCentral()
-}
+
+
+repositories { mavenCentral() }
 
 dependencies {
 	implementation 'com.google.guava:guava:27.0.1-jre'
@@ -30,6 +31,4 @@ eclipse {
 	}
 }
 
-test {
-	useJUnitPlatform()
-}
+test { useJUnitPlatform() }
