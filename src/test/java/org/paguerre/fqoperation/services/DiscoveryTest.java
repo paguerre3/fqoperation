@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.paguerre.fqoperation.models.RebelSatellite;
 import org.paguerre.fqoperation.models.Satellite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,15 +21,15 @@ public class DiscoveryTest {
 	public static void init() {
 		// "existent" means as written in ".pdf" in order to ensure that
 		// distance calculation works:
-		rb1 = new RebelSatellite("kenoby", new double[] { -500.0, -200.0 }, 100.0);
-		rb2 = new RebelSatellite("skywalker", new double[] { 100.0, -100.0 }, 115.5);
-		rb3 = new RebelSatellite("sato", new double[] { 500, 100 }, 142.7);
+		rb1 = new Satellite("kenoby", new double[] { -500.0, -200.0 }, 100.0);
+		rb2 = new Satellite("skywalker", new double[] { 100.0, -100.0 }, 115.5);
+		rb3 = new Satellite("sato", new double[] { 500, 100 }, 142.7);
 	}
 
 	@Test
 	public void getLocationWithCoordinatesOneRebelSatellite() {
-		double[][] coordinatesOfExistentSatellites = new double[][] { rb1.getCoordinates() };
-		double[] distancesFromExitentSatellitesToSpaseshipSrc = new double[] { rb1.getSourceDistance() };
+		double[][] coordinatesOfExistentSatellites = new double[][] { rb1.getPosition() };
+		double[] distancesFromExitentSatellitesToSpaseshipSrc = new double[] { rb1.getDistance() };
 		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
 				() -> discovery.getLocation(coordinatesOfExistentSatellites,
 						distancesFromExitentSatellitesToSpaseshipSrc),
@@ -40,9 +39,8 @@ public class DiscoveryTest {
 
 	@Test
 	public void getLocationWithCoordinatesTwoRebelSatellites() {
-		double[][] coordinatesOfExistentSatellites = new double[][] { rb1.getCoordinates(), rb2.getCoordinates() };
-		double[] distancesFromExitentSatellitesToSpaseshipSrc = new double[] { rb1.getSourceDistance(),
-				rb2.getSourceDistance() };
+		double[][] coordinatesOfExistentSatellites = new double[][] { rb1.getPosition(), rb2.getPosition() };
+		double[] distancesFromExitentSatellitesToSpaseshipSrc = new double[] { rb1.getDistance(), rb2.getDistance() };
 		double[] expectedCoordinate = new double[] { -215.02609047716473, -152.50354034129128 };
 		double[] calculatedCoordinate = discovery.getLocation(coordinatesOfExistentSatellites,
 				distancesFromExitentSatellitesToSpaseshipSrc);
@@ -54,10 +52,10 @@ public class DiscoveryTest {
 
 	@Test
 	public void getLocationWithCoordinatesFromFQOperation() {
-		double[][] coordinatesOfExistentSatellites = new double[][] { rb1.getCoordinates(), rb2.getCoordinates(),
-				rb3.getCoordinates() };
-		double[] distancesFromExitentSatellitesToSpaseshipSrc = new double[] { rb1.getSourceDistance(),
-				rb2.getSourceDistance(), rb3.getSourceDistance() };
+		double[][] coordinatesOfExistentSatellites = new double[][] { rb1.getPosition(), rb2.getPosition(),
+				rb3.getPosition() };
+		double[] distancesFromExitentSatellitesToSpaseshipSrc = new double[] { rb1.getDistance(), rb2.getDistance(),
+				rb3.getDistance() };
 		// source spaceship coordinate
 		double[] expectedCoordinate = new double[] { -58.315252587138595, -69.55141837312165 };
 		double[] calculatedCoordinate = discovery.getLocation(coordinatesOfExistentSatellites,
