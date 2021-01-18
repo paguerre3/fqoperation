@@ -47,6 +47,17 @@ https://cloud.google.com/appengine/docs/standard/java/gradle-reference?hl=es-419
 ### service location: https://fqoperations.df.r.appspot.com/v1/topsecret
 
 
+# user manual
+api reference: https://github.com/paguerre3/fqoperation/blob/master/swagger.yaml (import file into https://editor.swagger.io/ for visualization)
+
+usage: 
+<pre>
+    <code>
+        curl -X POST "https://fqoperations.df.r.appspot.com/v1/topsecret" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"satellites": [{"name": "kenobi","distance": 100.0,"message": ["este", "", "", "mensaje", ""]},{"name": "skywalker","distance": 115.5,"message": ["", "es", "", "", "secreto"]},{"name": "sato","distance": 142.7,"message": ["este", "", "un", "", ""]}]}'
+    </code>
+</pre>
+
+
 # license
 Copyright 2021, paguerre3
 
