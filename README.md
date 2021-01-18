@@ -53,6 +53,10 @@ api reference: https://github.com/paguerre3/fqoperation/blob/master/swagger.yaml
 usage: <pre><code>curl -X POST "https://fqoperations.df.r.appspot.com/v1/topsecret" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"satellites": [{"name": "kenobi","distance": 100.0,"message": ["este", "", "", "mensaje", ""]},{"name": "skywalker","distance": 115.5,"message": ["", "es", "", "", "secreto"]},{"name": "sato","distance": 142.7,"message": ["este", "", "un", "", ""]}]}'</code></pre>
 
 
+# travis CI
+https://travis-ci.com/github/paguerre3/fqoperation
+
+
 # license
 Copyright 2021, paguerre3
 
