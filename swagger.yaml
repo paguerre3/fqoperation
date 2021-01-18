@@ -54,7 +54,7 @@ definitions:
           distance:
             type: number
             format: double
-            description: distance between src and satellite 
+            description: distance between src and satellite.
             example: 142.7
           message:
             type: array
