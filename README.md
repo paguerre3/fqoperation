@@ -1,4 +1,4 @@
-# fqoperation [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+# fqoperation [![Build Status](https://travis-ci.com/paguerre3/fqoperation.svg?token=vSTu1zSW1ehqZeuodHpi&branch=master)](https://travis-ci.com/paguerre3/fqoperation) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 Top secret project that returns distance of src and help message
 
 
