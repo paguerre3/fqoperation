@@ -18,7 +18,7 @@ Java library: https://github.com/lemmingapex/Trilateration
 # google app engine (sandbox) 
 https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0
 
-fresh install (please notice service is already deployed under asia region):
+fresh install (please notice service is already deployed under asia-east2 region):
 
 0. authorizate api cloud from console (google usr & pass)-->> gcloud auth list
 
