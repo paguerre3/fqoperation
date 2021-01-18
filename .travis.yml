@@ -1,7 +1,14 @@
 language: java
 jdk:
-  - openjdk11
+  - oraclejdk11
 dist: trusty
+before_install:
+ - chmod +x gradlew
+ - wget https\://services.gradle.org/distributions/gradle-6.7.1-bin.zip
+ - unzip -qq gradle-6.7.1-bin.zip
+ - export GRADLE_HOME=$PWD/gradle-6.7.1
+ - export PATH=$GRADLE_HOME/bin:$PATH
+ - gradle -v
 script:
   - gradle check
   - gradle build
