@@ -56,7 +56,9 @@ https://cloud.google.com/appengine/docs/standard/java/gradle-reference?hl=es-419
 # user manual
 api reference: https://github.com/paguerre3/fqoperation/blob/master/swagger.yaml (import file into https://editor.swagger.io/ for visualization)
 
-usage: <pre><code>curl -X POST "https://fqoperations.df.r.appspot.com/v1/topsecret" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"satellites": [{"name": "kenobi","distance": 100.0,"message": ["este", "", "", "mensaje", ""]},{"name": "skywalker","distance": 115.5,"message": ["", "es", "", "", "secreto"]},{"name": "sato","distance": 142.7,"message": ["este", "", "un", "", ""]}]}'</code></pre>
+usage V1: <pre><code>curl -X POST "https://fqoperations.df.r.appspot.com/v1/topsecret" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"satellites": [{"name": "kenobi","distance": 100.0,"message": ["este", "", "", "mensaje", ""]},{"name": "skywalker","distance": 115.5,"message": ["", "es", "", "", "secreto"]},{"name": "sato","distance": 142.7,"message": ["este", "", "un", "", ""]}]}'</code></pre>
+
+in case of V2: <pre><code>curl -X POST "https://fqoperations2.rj.r.appspot.com/v2/topsecret_split/sato" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"name": "sato","distance": 142.7,"message": ["este", "", "un", "", ""]}'</code></pre> <pre><code>curl -X GET "https://fqoperations2.rj.r.appspot.com/v2/topsecret_split" -H  "accept: application/json"</code></pre>
 
 
 # travis CI
