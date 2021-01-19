@@ -49,13 +49,12 @@ public class Satellite extends Spacecraft {
 			return true;
 		}
 		final Satellite objToCompare = (Satellite) obj;
-		return new EqualsBuilder().append(getName(), objToCompare.getName())
-				.append(getPosition(), objToCompare.getPosition()).isEquals();
+		return new EqualsBuilder().append(getName(), objToCompare.getName()).isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(getName()).append(getPosition()).toHashCode();
+		return new HashCodeBuilder(17, 37).append(getName()).toHashCode();
 	}
 
 	@Override

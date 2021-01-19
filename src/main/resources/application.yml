@@ -1,6 +1,9 @@
 org:
   paguerre:
     fqoperation:
-      version: v1
+      version: v2
       resource: topsecret
       context-path: /${org.paguerre.fqoperation.version}/${org.paguerre.fqoperation.resource}
+      split:
+        resource: ${org.paguerre.fqoperation.resource}_split
+        context-path: /${org.paguerre.fqoperation.version}/${org.paguerre.fqoperation.split.resource}
