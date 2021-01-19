@@ -45,7 +45,7 @@ public class TopSecretSplitController {
 	 * 
 	 * @return ResponseEntity<?> including transporter information
 	 */
-	@GetMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE }, value = "/{name}")
 	public ResponseEntity<?> processTopSecretSplit() {
 		ResponseEntity<?> retVal = ResponseEntity.notFound().build();
 		Transporter transporter = topSecretSplitSvc.find();
