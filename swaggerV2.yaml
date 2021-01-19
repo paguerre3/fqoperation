@@ -1,0 +1,133 @@
+swagger: "2.0"
+info:
+  description: >
+    fqoperation topsecret service used for performing trilateration and resolving messages from a source spacecraft.
+  version: "2.0.0"
+  title: "fqoperations"
+  contact:
+    email: "pablo.aguerre@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+paths:
+  /topsecret:
+    post:
+      summary: trilateration and resolution of messages from source spacecraft taking into account a set of satellites. 
+      operationId: topsecret
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+        - name: satellites composition
+          in: body
+          description: holder of rebel satellites
+          required: true
+          schema:
+            $ref: '#/definitions/SatelitesComposition'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/PositionHolder'
+        404:
+          description: Not found (unable to discover spacecraft) 
+  /topsecret_split/{satellite_name}:
+    post:
+      summary: store distance and message received by satellite. 
+      operationId: topsecret_split_request
+      consumes:
+      - application/json
+      parameters:
+        - in: path
+          name: satellite_name
+          required: true
+          type: string
+          description: name of rebel satellite.
+        - name: satellite info
+          in: body
+          description: information received by satellite including distance and position
+          required: true
+          schema:
+            $ref: '#/definitions/Satellite'
+      responses:
+        202:
+          description: received info accepted
+        404:
+          description: Not found (unable to find satellite position for performing trilateration therefore message and distance are lost)
+  /topsecret_split:
+    get:
+      summary: intends to calculate position and message based on saved information e. g. satellite/s position/s stored 
+      operationId: topsecret_split_response
+      produces:
+      - application/json
+      responses:
+        202:
+          description: OK
+          schema:
+            $ref: '#/definitions/PositionHolder'
+        404:
+          description: Not found (unable to find satellite position for performing trilateration therefore message and distance are lost)
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+      SatelitesComposition:
+        type: object
+        required: [ "satellites"]
+        properties:
+          satellites:
+            description: set of satellites distances and messages.
+            type: array
+            items:
+              $ref: '#/definitions/Satellite'
+      Satellite:
+        type: object
+        required: [ "name", "distance", "message" ]
+        properties:
+          name:
+            type: string
+            description: rebel satellite name
+            example: sato
+          distance:
+            type: number
+            format: double
+            description: distance between src and satellite.
+            example: 142.7
+          message:
+            type: array
+            items:
+              type: string
+            description: message obtained by satellite
+            example: ["este", "", "un", "", ""]
+      PositionHolder:
+        type: object
+        description: spececraft geo location and message discovered
+        properties:
+          position:
+            $ref: '#/definitions/Position'
+          message:
+            type: string
+            example: "este es un mensaje secreto"
+      Position:
+        type: object
+        description: spececraft geo location discovered
+        properties:
+          x:
+            type: number
+            format: double
+            example: -100.0
+          y:
+            type: number
+            format: double
+            example: 75.5
+      Error:
+        type: object
+        description: error message description
+        properties:
+          error:
+            type: string
+            example: unable to find spacecraft as there isn't enough information
+
+host: fqoperations2.rj.r.appspot.com
+basePath: /v2
