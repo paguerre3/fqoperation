@@ -50,6 +50,7 @@ https://cloud.google.com/appengine/docs/standard/java/gradle-reference?hl=es-419
 ### service V2 locations (southamerica-east1 is more efficient): 
 ### https://fqoperations2.rj.r.appspot.com/v2/topsecret
 ### https://fqoperations2.rj.r.appspot.com/v2/topsecret_split/{name}
+### https://fqoperations2.rj.r.appspot.com/v2/topsecret_split
 
 
 # user manual
