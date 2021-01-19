@@ -18,7 +18,7 @@ Java library: https://github.com/lemmingapex/Trilateration
 # google app engine (sandbox) 
 https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0
 
-fresh install (please notice service is already deployed under asia-east2 region):
+fresh install (just for fun, please notice that v1 service is already deployed under asia-east2 region and v2 service under southamerica-east1):
 
 0. authorizate api cloud from console (google usr & pass)-->> gcloud auth list
 
@@ -44,7 +44,13 @@ https://cloud.google.com/appengine/docs/standard/java/gradle-reference?hl=es-419
 
 10. service deploy invoking appengine from gradle wrapper -->> ./gradlew appengineDeploy
 
-### service location: https://fqoperations.df.r.appspot.com/v1/topsecret
+### service V1 location (asia-east2):
+### https://fqoperations.df.r.appspot.com/v1/topsecret
+
+### service V2 locations (southamerica-east1 is more efficient): 
+### https://fqoperations2.rj.r.appspot.com/v2/topsecret
+### https://fqoperations2.rj.r.appspot.com/v2/topsecret_split/{name}
+### https://fqoperations2.rj.r.appspot.com/v2/topsecret_split
 
 
 # user manual
