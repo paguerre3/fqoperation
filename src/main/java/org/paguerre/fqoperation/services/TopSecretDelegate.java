@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
@@ -78,9 +80,14 @@ public class TopSecretDelegate implements SpacecraftResolver {
 		double[][] crds = to2DDoublePrimitive(positions);
 		double[] rads = distances.stream().mapToDouble(i -> i).toArray();
 		Transporter transporter = new Transporter();
-		transporter.setPosition(new Position(discovery.getLocation(crds, rads)));
-		String[][] msgs = to2DStringPrimitive(messages);
-		transporter.setMessage(messenger.getMessage(msgs));
+		// parallel work here:
+		CompletableFuture<Void> posFut = CompletableFuture
+				.runAsync(() -> transporter.setPosition(new Position(discovery.getLocation(crds, rads))));
+		CompletableFuture<Void> mssgFut = CompletableFuture.runAsync(() -> {
+			String[][] msgs = to2DStringPrimitive(messages);
+			transporter.setMessage(messenger.getMessage(msgs));
+		});
+		Stream.of(posFut, mssgFut).forEach(CompletableFuture::join);
 		return transporter;
 	}
 
