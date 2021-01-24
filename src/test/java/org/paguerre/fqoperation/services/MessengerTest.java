@@ -8,7 +8,7 @@ import org.paguerre.fqoperation.models.Satellite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = Messenger.class )
 public class MessengerTest {
 
 	@Autowired
