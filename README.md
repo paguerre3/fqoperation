@@ -9,10 +9,11 @@ Java library: https://github.com/lemmingapex/Trilateration
 
 
 # arquitecture
-![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/seq-diagram.jpg?raw=true)
+### sequence view 
+![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/seq-diagram.png?raw=true)
 
 ### package view 
-![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/pckge-diagram.jpg?raw=true)
+![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/pckge-diagram.png?raw=true)
 
 
 # google app engine (sandbox) 
