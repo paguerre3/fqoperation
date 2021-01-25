@@ -9,6 +9,7 @@ Java library: https://github.com/lemmingapex/Trilateration
 
 
 # arquitecture
+### sequence view 
 ![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/seq-diagram.png?raw=true)
 
 ### package view 
