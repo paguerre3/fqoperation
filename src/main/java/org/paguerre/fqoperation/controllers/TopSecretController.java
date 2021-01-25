@@ -21,7 +21,7 @@ public class TopSecretController {
 	@Qualifier("TopSecretSvc")
 	TopSecretDelegate topSecretSvc;
 
-	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> processTopSecret(RequestEntity<SatellitesComposition> requestEntity) {
 		ResponseEntity<?> retVal = ResponseEntity.notFound().build();
 		Transporter transporter = topSecretSvc.find(requestEntity.getBody());
