@@ -56,11 +56,13 @@ public class TopSecretDelegate implements SpacecraftResolver {
 							Satellite found = ersOpt.get();
 							found.setDistance(sni.getDistance());
 							found.setMessage(sni.getMessage());
+							satellitesNewInformation.setVerified(true);
 						} else {
 							LOG.warn("Unable to find satelite in cache: {}" + sni);
 						}
 					});
-			transporter = find(rebelSatellites);
+			if (satellitesNewInformation.isVerified())
+				transporter = find(rebelSatellites);
 		} catch (Exception e) {
 			LOG.error("Unable to find spacecraft/transporter", e);
 		}
