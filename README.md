@@ -60,7 +60,7 @@ api references (import file/s into https://editor.swagger.io/ for visualization)
 
 usage V1: <pre><code>curl -X POST "https://fqoperations.df.r.appspot.com/v1/topsecret" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"satellites": [{"name": "kenobi","distance": 100.0,"message": ["este", "", "", "mensaje", ""]},{"name": "skywalker","distance": 115.5,"message": ["", "es", "", "", "secreto"]},{"name": "sato","distance": 142.7,"message": ["este", "", "un", "", ""]}]}'</code></pre>
 
-in case of V2: <pre><code>curl -X POST "https://fqoperations2.rj.r.appspot.com/v2/topsecret_split/sato" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"name": "sato","distance": 142.7,"message": ["este", "", "un", "", ""]}'</code></pre> <pre><code>curl -X GET "https://fqoperations2.rj.r.appspot.com/v2/topsecret_split" -H  "accept: application/json"</code></pre>
+in case of V2: <pre><code>curl -X POST "https://fqoperations2.rj.r.appspot.com/v2/topsecret_split/kenobi" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"distance": 100.0,"message": ["este", "", "", "mensaje", ""]}'</code></pre> <pre><code>curl -X POST "https://fqoperations2.rj.r.appspot.com/v2/topsecret_split/skywalker" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"distance": 115.5,"message": ["", "es", "", "", "secreto"]}'</code></pre> <pre><code>curl -X POST "https://fqoperations2.rj.r.appspot.com/v2/topsecret_split/sato" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"distance": 142.7,"message": ["este", "", "un", "", ""]}'</code></pre> <pre><code>curl -X GET "https://fqoperations2.rj.r.appspot.com/v2/topsecret_split" -H  "accept: application/json"</code></pre>
 
 
 # travis CI
