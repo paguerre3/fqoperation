@@ -45,7 +45,6 @@ public class TopSecretDelegate implements SpacecraftResolver {
 	public Transporter find(SatellitesComposition satellitesNewInformation) {
 		Transporter transporter = null;
 		try {
-			final boolean[] verifiedSatellites = new boolean[] { false };
 			Set<Satellite> rebelSatellites = this.rebelSatellitesCache
 					.getUnchecked(env.getProperty("org.paguerre.fqoperation.resource"));
 			satellitesNewInformation.getSatellites().stream().filter(sni0 -> StringUtils.isNotBlank(sni0.getName()))
@@ -57,12 +56,12 @@ public class TopSecretDelegate implements SpacecraftResolver {
 							Satellite found = ersOpt.get();
 							found.setDistance(sni.getDistance());
 							found.setMessage(sni.getMessage());
-							verifiedSatellites[0] = true;
+							satellitesNewInformation.setVerified(true);
 						} else {
 							LOG.warn("Unable to find satelite in cache: {}" + sni);
 						}
 					});
-			if (verifiedSatellites[0])
+			if (satellitesNewInformation.isVerified())
 				transporter = find(rebelSatellites);
 		} catch (Exception e) {
 			LOG.error("Unable to find spacecraft/transporter", e);
