@@ -5,7 +5,7 @@ import java.util.Set;
 public class SatellitesComposition {
 
 	Set<Satellite> satellites;
-	boolean verified;
+	transient boolean verified;
 
 	public Set<Satellite> getSatellites() {
 		return satellites;
@@ -22,4 +22,5 @@ public class SatellitesComposition {
 	public void setVerified(boolean verified) {
 		this.verified = verified;
 	}
+
 }
