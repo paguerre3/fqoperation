@@ -70,7 +70,7 @@ public class TopSecretDelegate implements SpacecraftResolver {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected Transporter find(Set<Satellite> calculationSatellites) {
+	protected final Transporter find(Set<Satellite> calculationSatellites) {
 		List<List<Double>> positions = new ArrayList<>();
 		List<Double> distances = new ArrayList<>();
 		List<List<String>> messages = new ArrayList<>();
