@@ -21,6 +21,8 @@ dependencies {
 	implementation 'com.lemmingapex.trilateration:trilateration:1.0.2'
 	implementation 'org.apache.commons:commons-math3:3.6.1'
 	implementation 'org.apache.commons:commons-lang3:3.11'
+	implementation 'org.apache.commons:commons-lang3:3.11'
+	testImplementation	'org.unitils:unitils-core:3.4.6'
 }
 
 eclipse {
