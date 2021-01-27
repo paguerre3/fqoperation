@@ -15,6 +15,13 @@ Java library: https://github.com/lemmingapex/Trilateration
 ### package view 
 ![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/pckge-diagram.png?raw=true)
 
+### class view 
+![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/clss-diagram.png?raw=true) 
+
+### implementation view
+![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/springboot-appengine.png?raw=true) 
+![Screenshot](https://github.com/paguerre3/fqoperation/blob/master/design/appengine-flex-autoscale.png?raw=true) 
+
 
 # google app engine (sandbox) 
 https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot#0
