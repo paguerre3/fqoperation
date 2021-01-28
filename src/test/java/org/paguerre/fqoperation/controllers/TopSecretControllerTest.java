@@ -7,7 +7,7 @@ import org.paguerre.fqoperation.models.Position;
 import org.paguerre.fqoperation.models.Satellite;
 import org.paguerre.fqoperation.models.SatellitesComposition;
 import org.paguerre.fqoperation.models.Transporter;
-import org.paguerre.fqoperation.services.TopSecretDelegate;
+import org.paguerre.fqoperation.services.SpacecraftResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -33,7 +33,7 @@ public class TopSecretControllerTest {
 
 	@MockBean
 	@Qualifier("TopSecretSvc")
-	TopSecretDelegate topSecretDelegate;
+	SpacecraftResolver topSecretDelegate;
 
 	@Autowired
 	MockMvc mvc;
