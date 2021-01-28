@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.paguerre.fqoperation.models.Satellite;
 import org.paguerre.fqoperation.models.Transporter;
-import org.paguerre.fqoperation.services.TopSecretSplitDelegate;
+import org.paguerre.fqoperation.services.SpacecraftResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class TopSecretSplitController {
 
 	@Autowired
 	@Qualifier("SplitSvc")
-	TopSecretSplitDelegate topSecretSplitSvc;
+	SpacecraftResolver topSecretSplitSvc;
 
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE }, value = "/{name}")
 	public ResponseEntity<?> saveTopSecretSplit(RequestEntity<Satellite> requestEntity,

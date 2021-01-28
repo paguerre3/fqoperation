@@ -2,7 +2,7 @@ package org.paguerre.fqoperation.controllers;
 
 import org.paguerre.fqoperation.models.SatellitesComposition;
 import org.paguerre.fqoperation.models.Transporter;
-import org.paguerre.fqoperation.services.TopSecretDelegate;
+import org.paguerre.fqoperation.services.SpacecraftResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class TopSecretController {
 
 	@Autowired
 	@Qualifier("TopSecretSvc")
-	TopSecretDelegate topSecretSvc;
+	SpacecraftResolver topSecretSvc;
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> processTopSecret(RequestEntity<SatellitesComposition> requestEntity) {
