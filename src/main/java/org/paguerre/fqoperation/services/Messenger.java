@@ -41,7 +41,7 @@ public class Messenger {
 			});
 			int mostFrequentSize = mostFrequentSizes.getLeft();
 			msgsList.stream().forEach(msgList -> msgList.stream().forEach(msg -> {
-				// don't want to filter.stream twice as it mast
+				// don't want to filter.stream twice as it must
 				// be done in sequence:
 				if (StringUtils.isNotBlank(msg)) {
 					int index = msgList.indexOf(msg);
@@ -58,14 +58,7 @@ public class Messenger {
 			Map<String, Integer> sortedPhrases = phrasesToOrder.entrySet().stream()
 					.sorted(Map.Entry.<String, Integer>comparingByValue()).collect(Collectors.toMap(Map.Entry::getKey,
 							Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-			StringBuilder sb = new StringBuilder();
-			sortedPhrases.keySet().stream().forEach(ph -> {
-				sb.append(ph);
-				sb.append(StringUtils.SPACE);
-			});
-			if (sb.length() > 0)
-				sb.deleteCharAt(sb.length() - 1);
-			return sb.toString();
+			return sortedPhrases.keySet().stream().collect(Collectors.joining(StringUtils.SPACE)).toString();
 		}
 		throw new IllegalArgumentException("All messagers are null.");
 	}
