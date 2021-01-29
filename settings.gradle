@@ -9,6 +9,9 @@ pluginManagement {
 			if (requested.id.id.startsWith('com.google.cloud.tools.appengine')) {
 				useModule("com.google.cloud.tools:appengine-gradle-plugin:${requested.version}")
 			}
+			if (requested.id.id.startsWith('com.github.kt3k.coveralls')) {
+				useModule("org.kt3k.gradle.plugin:coveralls-gradle-plugin:${requested.version}")
+			}
 		}
 	}
 }
