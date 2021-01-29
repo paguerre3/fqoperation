@@ -13,7 +13,7 @@ script:
   - gradle check
   - gradle build
 after_success:
-    - ./gradlew jacocoTestReport coveralls
+    - gradle jacocoTestReport coveralls
     - mkdir build
     - mv * build
     - tar -czf package.tgz build
