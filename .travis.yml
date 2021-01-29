@@ -14,9 +14,10 @@ script:
   - gradle build
 after_success:
     - gradle jacocoTestReport coveralls
-    - mkdir build
-    - mv * build
-    - tar -czf package.tgz build
+    - curl -F 'json_file=@build/coveralls/report.json' 'https://coveralls.io/api/v1/jobs'
+    #- mkdir build
+    #- mv * build
+    #- tar -czf package.tgz build
     #- export SSHPASS=$DEPLOY_PASS
     #- sshpass -e scp package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     #- sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
