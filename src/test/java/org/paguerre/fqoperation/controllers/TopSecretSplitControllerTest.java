@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.paguerre.fqoperation.models.Position;
 import org.paguerre.fqoperation.models.Satellite;
-import org.paguerre.fqoperation.models.SatellitesComposition;
 import org.paguerre.fqoperation.models.Transporter;
 import org.paguerre.fqoperation.services.SpacecraftResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,26 +20,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TopSecretControllerTest {
+public class TopSecretSplitControllerTest {
 
 	@MockBean
-	@Qualifier("TopSecretSvc")
-	SpacecraftResolver topSecretDelegate;
+	@Qualifier("SplitSvc")
+	SpacecraftResolver splitDelegate;
 
 	@Autowired
 	MockMvc mvc;
 
 	@Autowired
-	@Qualifier("TopSecretCtrl")
-	TopSecretController topSecretController;
+	@Qualifier("SplitCtrl")
+	TopSecretSplitController splitController;
 
 	static MediaType mType;
 	static ObjectMapper objMapper;
@@ -56,25 +53,33 @@ public class TopSecretControllerTest {
 	}
 
 	@Test
-	public void processTopSecretOk() throws Exception {
-		given(topSecretDelegate.find(ArgumentMatchers.any(SatellitesComposition.class))).willReturn(t1);
-		SatellitesComposition sc = new SatellitesComposition();
-		Set<Satellite> satellites = new HashSet<>();
-		sc.setSatellites(satellites);
-		satellites.add(rb1);
-		mvc.perform(post("/v2/topsecret").accept(mType).contentType(mType).content(objMapper.writeValueAsString(sc)))
+	public void saveTopSecretSplitAccepted() throws Exception {
+		given(splitDelegate.store(ArgumentMatchers.any(Satellite.class))).willReturn(true);
+		mvc.perform(post("/v2/topsecret_split/" + rb1.getName()).accept(mType).contentType(mType)
+				.content(objMapper.writeValueAsString(rb1))).andExpect(status().isAccepted());
+	}
+
+	@Test
+	public void saveTopSecretSplitNotFound() throws Exception {
+		given(splitDelegate.store(ArgumentMatchers.any(Satellite.class))).willReturn(false);
+		mvc.perform(post("/v2/topsecret_split/" + rb1.getName()).accept(mType).contentType(mType)
+				.content(objMapper.writeValueAsString(rb1))).andExpect(status().isNotFound());
+	}
+
+	@Test
+	public void processTopSecretSplitOk() throws Exception {
+		given(splitDelegate.find()).willReturn(t1);
+		mvc.perform(
+				get("/v2/topsecret_split").accept(mType).contentType(mType).content(objMapper.writeValueAsString(rb1)))
 				.andExpect(status().isOk()).andExpect(jsonPath("$.position.x", is(7.0)))
 				.andExpect(jsonPath("$.position.y", is(14.5))).andExpect(jsonPath("$.message", is("este es un msg")));
 	}
 
 	@Test
-	public void processTopSecretNotFound() throws Exception {
-		given(topSecretDelegate.find(ArgumentMatchers.any(SatellitesComposition.class))).willReturn(null);
-		SatellitesComposition sc = new SatellitesComposition();
-		Set<Satellite> satellites = new HashSet<>();
-		sc.setSatellites(satellites);
-		satellites.add(rb1);
-		mvc.perform(post("/v2/topsecret").accept(mType).contentType(mType).content(objMapper.writeValueAsString(sc)))
+	public void processTopSecretSplitNotFound() throws Exception {
+		given(splitDelegate.find()).willReturn(null);
+		mvc.perform(
+				get("/v2/topsecret_split").accept(mType).contentType(mType).content(objMapper.writeValueAsString(rb1)))
 				.andExpect(status().isNotFound());
 	}
 }
