@@ -54,4 +54,18 @@ jacocoTestReport {
         xml.enabled = true // coveralls plugin depends on xml format report
         html.enabled = true
     }
+    
+    // Exclude testing package from the report
+    afterEvaluate {
+        getClassDirectories().setFrom(classDirectories.files.collect {
+            fileTree(dir: it, exclude: '**/test**')
+        })
+    }
 }
+
+coveralls {
+    saveAsFile = true
+    sendToCoveralls = false
+}
+
+task coverage(dependsOn: ['test', 'jacocoTestReport'])
